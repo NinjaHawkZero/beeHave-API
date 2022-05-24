@@ -5,11 +5,11 @@ const cors = require("cors");
 const { NotFoundError } = require("./expressError");
 const morgan = require("morgan");
 const { authenticateJWT } = require("./authorize")
-const authenticationRoutes = require("./routes/Authentication");
-const behaviorRoutes = require("./routes/Behavior");
-const classesRoutes = require("./routes/Classes");
-const studentRoutes = require("./routes/Student");
-const teacherRoutes = require("./routes/Teacher");
+const authenticationRoutes = require("./Routes/Authentication");
+const behaviorRoutes = require("./Routes/Behavior");
+const classesRoutes = require("./Routes/Classes");
+const studentRoutes = require("./Routes/Student");
+const teacherRoutes = require("./Routes/Teacher");
 
 
 const app = express();
