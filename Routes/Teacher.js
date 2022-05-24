@@ -17,7 +17,7 @@ const teacherRouter = new express.Router();
 
 //Retrieve current teacher
 
-teacherRouter.get("/:id",  async function(req, res, next) {
+teacherRouter.get("/teacher/:id",  async function(req, res, next) {
     try {
         const user = await Teacher.get(req.params.id);
 
@@ -29,7 +29,7 @@ teacherRouter.get("/:id",  async function(req, res, next) {
 
 //Update teacher data
 
-teacherRouter.patch("/:id",  async function(req, res, next) {
+teacherRouter.patch("/teacherUpdate/:id",  async function(req, res, next) {
     try {
         console.log(req.body)
         const user = await Teacher.update(req.params.id, req.body);
@@ -42,7 +42,7 @@ teacherRouter.patch("/:id",  async function(req, res, next) {
 
 //Delete a teacher
 
-teacherRouter.delete("/:id",  async function(req, res, next) {
+teacherRouter.delete("/teacherDelete/:id",  async function(req, res, next) {
     try {
         let {id, name} = req.body;
          await Teacher.remove(id, name);
