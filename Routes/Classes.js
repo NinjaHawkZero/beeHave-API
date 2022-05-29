@@ -19,8 +19,9 @@ classesRouter.post("/:id/createClass",  async function(req, res, next) {
         let {id, name} = req.body;
 
         let createdClass = await Classes.createClass(id, name);
+        let returnArr = [createdClass]
 
-        return res.status(201).json({createdClass})
+        return res.status(201).json({returnArr})
 
 
     } catch(err) {return next(err)}
@@ -39,6 +40,7 @@ classesRouter.get("/:id/classes", async function(req, res, next) {
     try{
 
         let teacherClasses = await Classes.getClasses(req.params.id);
+
 
         return res.status(201).json({teacherClasses})
 
@@ -62,8 +64,9 @@ classesRouter.patch("/:id/updateClass", async function(req, res, next) {
         let {id} = req.body;
 
         const updatedClass = await Classes.updateClass(id, classObj);
+        const returnArr = [updatedClass]
 
-        return res.json({updatedClass})
+        return res.json({returnArr})
 
     } catch(err) {return next(err)}
 

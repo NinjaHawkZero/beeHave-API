@@ -21,8 +21,9 @@ behaviorRouter.post("/:id/createBehavior",  async function(req, res, next) {
         let {assigned, name, note, score} = req.body;
         let studentID = req.body.studentID
         let assignedDate = await Behaviors.createBehavior(studentID, assigned, name, note, score);
+        let returnArr = [assignedDate]
 
-        return res.status(201).json({assignedDate})
+        return res.status(201).json({returnArr})
 
     }
     catch(err) {return next(err)}
@@ -48,8 +49,9 @@ behaviorRouter.get("/:id/getBehavior",  async function(req, res, next) {
         //Get id of behavior
         let id = req.body.id;
         let behavior = await Behaviors.getBehavior(id);
+        let returnArr = [behavior]
 
-        return res.status(201).json({behavior})
+        return res.status(201).json({returnArr})
 
     }
 

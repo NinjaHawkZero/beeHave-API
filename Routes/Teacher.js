@@ -20,8 +20,9 @@ const teacherRouter = new express.Router();
 teacherRouter.get("/teacher/:id",  async function(req, res, next) {
     try {
         const user = await Teacher.get(req.params.id);
+        const returnArr = [user];
 
-        return res.json({user});
+        return res.json({returnArr});
     }
     catch(err) {return next(err);}
 });
@@ -33,8 +34,9 @@ teacherRouter.patch("/teacherUpdate/:id",  async function(req, res, next) {
     try {
         console.log(req.body)
         const user = await Teacher.update(req.params.id, req.body);
+        const returnArr = [user]
 
-        return res.json({user});
+        return res.json({returnArr});
     } catch (err) {next(err)};
 });
 

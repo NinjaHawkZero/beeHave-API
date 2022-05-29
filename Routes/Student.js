@@ -22,9 +22,10 @@ studentsRouter.post("/:id/createStudent",  async function(req, res, next) {
          let {name, age} = req.body;
          let id = req.body.id;
 
-         let student = await Students.createStudent(id, name, age)
+         let student = await Students.createStudent(id, name, age);
+         let returnArr = [student]
 
-         return res.status(201).json({student})
+         return res.status(201).json({returnArr})
 
 
 
@@ -55,8 +56,9 @@ studentsRouter.get("/:id/getStudent", async function(req, res, next) {
 
         let id = req.body.id;
         let student = await Students.getStudent(id);
+        let returnArr = [student]
 
-        return res.status(201).json({student})
+        return res.status(201).json({returnArr})
     }
     catch(err) {next(err)}
 });
@@ -70,8 +72,9 @@ studentsRouter.patch("/:id/updateStudent",  async function(req, res, next) {
         let {id, name} = data;
 
         let student = await Students.updateStudent(id, name, data);
+        let returnArr = [student]
 
-        return res.status(201).json({student})
+        return res.status(201).json({returnArr})
 
     }
     catch(err) {next(err)}
@@ -86,8 +89,9 @@ studentsRouter.patch("/:id/updateScore",  async function(req, res, next) {
         let behaveValue = req.body.behaveValue;
 
         let newScore = await Students.updateBehaveScore(student, behaveValue);
+        let returnArr = [newScore]
 
-        return res.status(201).json({newScore})
+        return res.status(201).json({returnArr})
     }
     catch(err) {return next(err)}
 });
