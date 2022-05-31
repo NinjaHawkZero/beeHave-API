@@ -31,10 +31,10 @@ behaviorRouter.post("/:id/createBehavior",  async function(req, res, next) {
 
 
 
-behaviorRouter.get("/:id/getBehaviors",  async function(req, res, next) {
+behaviorRouter.get("/:id/student/:studentid/getBehaviors",  async function(req, res, next) {
     try{
         //Get student id 
-        let studentID = req.body.studentID
+        let studentID = req.params.studentid
         let behaviors = await Behaviors.getBehaviors(studentID);
 
         return res.status(201).json({behaviors})
@@ -44,10 +44,10 @@ behaviorRouter.get("/:id/getBehaviors",  async function(req, res, next) {
 
 
 
-behaviorRouter.get("/:id/getBehavior",  async function(req, res, next) {
+behaviorRouter.get("/:id/student/:studentid/getBehavior/:behaviorid",  async function(req, res, next) {
     try{
         //Get id of behavior
-        let id = req.body.id;
+        let id = req.params.behaviorid;
         let behavior = await Behaviors.getBehavior(id);
         let returnArr = [behavior]
 

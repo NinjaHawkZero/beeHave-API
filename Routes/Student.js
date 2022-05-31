@@ -37,10 +37,10 @@ studentsRouter.post("/:id/createStudent",  async function(req, res, next) {
 
 
 //Retrieve all students for class
-studentsRouter.get("/:id/getStudents",  async function(req, res, next) {
+studentsRouter.get("/:id/class/:classid/students",  async function(req, res, next) {
     try{
         //ID of the class needed
-        let id = req.body.id;
+        let id = req.params.classid;
         let students = await Students.getStudents(id);
 
         return res.status(201).json({students})
@@ -51,10 +51,10 @@ studentsRouter.get("/:id/getStudents",  async function(req, res, next) {
 
 
 //Retrieve one student from class
-studentsRouter.get("/:id/getStudent", async function(req, res, next) {
+studentsRouter.get("/:id/class/:classid/getStudent/:studentid", async function(req, res, next) {
     try{
 
-        let id = req.body.id;
+        let id = req.params.studentid;
         let student = await Students.getStudent(id);
         let returnArr = [student]
 
