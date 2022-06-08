@@ -49,12 +49,12 @@ static async register(name, password) {
     return teacher;
 }
 
-
+//Your current system is dumb, you need to make user names unique.
 //Authenticate Teacher(user) for login
 static async authenticate(name, password) {
     //Find teacher first
     const result = await db.query(
-        `SELECT name,
+        `SELECT id, name,
         password
         FROM teachers
         WHERE name = $1
@@ -69,7 +69,7 @@ static async authenticate(name, password) {
         if(isValid === true) {
             delete teacher.password;
             return teacher;
-        }
+        } else {throw new UnauthorizedError("Invalid username/password")}
     }
 
     throw new UnauthorizedError("Invalid username/password");
@@ -109,6 +109,8 @@ static async update(id, data) {
                       SET ${setCols}
                       WHERE id = ${idIdx}  
                       RETURNING name, img_url`;
+
+    console.log(querySql)
 
     const result = await db.query(querySql, [...values, id]);
     

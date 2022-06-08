@@ -35,6 +35,7 @@ behaviorRouter.get("/:id/student/:studentid/getBehaviors",  async function(req, 
     try{
         //Get student id 
         let studentID = req.params.studentid
+        
         let behaviors = await Behaviors.getBehaviors(studentID);
 
         return res.status(201).json({behaviors})

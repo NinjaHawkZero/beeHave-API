@@ -39,8 +39,11 @@ authenticationRouter.post("/login", async function(req, res, next) {
     try {
         let {username, password} = req.body;
         if(await Teacher.authenticate(username, password)) {
+            let teacher = await Teacher.authenticate(username, password);
+            let {id, name} = teacher
             let token = jwt.sign({username}, SECRET_KEY);
-            return res.json({token})
+            console.log(teacher)
+            return res.json({token, id, name})
         } else  {
             throw new ExpressError("Invalid username/password", 400)
         }

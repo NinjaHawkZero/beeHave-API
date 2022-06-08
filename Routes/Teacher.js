@@ -18,7 +18,9 @@ const teacherRouter = new express.Router();
 //Retrieve current teacher
 
 teacherRouter.get("/teacher/:id",  async function(req, res, next) {
+
     try {
+    
         const user = await Teacher.get(req.params.id);
         const returnArr = [user];
 

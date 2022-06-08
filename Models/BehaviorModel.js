@@ -47,6 +47,7 @@ class Behaviors {
                                        WHERE studentID = $1`, [studentID]);
         
         let behaviors = result.rows;
+        console.log(behaviors)
 
         return behaviors
     }
