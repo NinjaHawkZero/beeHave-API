@@ -6,7 +6,7 @@ const { sqlForUpdate } = require("../sqlhelper");
 const {
     NotFoundError,
     BadRequestError,
-    UnauthorizedError,
+    UnauthorizedError,                                                       
 } = require("../expressError");
 
 const { BCRYPT_WORK_FACTOR } = require("../config")
@@ -53,6 +53,30 @@ class Behaviors {
     }
 
 
+
+    //Get Positive and Negative Behaviors At Once
+
+        static async behaviorAnalytics(studentID) {
+
+            const resultPositive = await db.query(`SELECT *
+                                           FROM behaviors
+                                           WHERE studentID = $1
+                                           AND score = 1`, [studentID]);
+
+            let positiveBehaviors = resultPositive.rows;
+
+            const resultNegative = await db.query(`SELECT *
+                                                   FROM behaviors
+                                                   WHERE studentID = $1
+                                                   AND score = 1`, [studentID]);
+
+            let negativeBehaviors = resultNegative.rows
+
+            return {positiveBehaviors, negativeBehaviors}
+
+        }
+
+
     //Get single Behavior for student
 
     static async getBehavior(id) {
@@ -95,6 +119,10 @@ class Behaviors {
 
 
 }
+
+
+
+
 
 
 module.exports = {Behaviors}

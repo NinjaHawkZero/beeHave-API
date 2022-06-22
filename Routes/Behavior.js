@@ -45,6 +45,23 @@ behaviorRouter.get("/:id/student/:studentid/getBehaviors",  async function(req, 
 
 
 
+
+
+behaviorRouter.get("/:id/student/:studentid/getAnalytics",  async function(req, res, next) {
+    try{
+        //Get student id 
+        let studentID = req.params.studentid
+        
+        let behaviors = await Behaviors.behaviorAnalytics(studentID);
+
+        return res.status(201).json(behaviors)
+    }
+    catch(err) {return next(err)}
+});
+
+
+
+
 behaviorRouter.get("/:id/student/:studentid/getBehavior/:behaviorid",  async function(req, res, next) {
     try{
         //Get id of behavior
