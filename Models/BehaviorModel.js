@@ -68,7 +68,7 @@ class Behaviors {
             const resultNegative = await db.query(`SELECT *
                                                    FROM behaviors
                                                    WHERE studentID = $1
-                                                   AND score = 1`, [studentID]);
+                                                   AND score = -1`, [studentID]);
 
             let negativeBehaviors = resultNegative.rows
 
