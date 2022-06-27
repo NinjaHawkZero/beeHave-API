@@ -16,9 +16,9 @@ const classesRouter = new express.Router();
 //Route to create a class
 classesRouter.post("/:id/createClass",  async function(req, res, next) {
     try{
-        let {id, name} = req.body;
+        let {id, name, classTime} = req.body;
 
-        let createdClass = await Classes.createClass(id, name);
+        let createdClass = await Classes.createClass(id, name, classTime);
         let returnArr = [createdClass]
 
         return res.status(201).json({returnArr})

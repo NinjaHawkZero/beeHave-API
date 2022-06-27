@@ -21,7 +21,7 @@ class Classes {
         `
                                 INSERT INTO classes
                                 (teacherID, name, classTime)
-                                VALUES ($1, $2)
+                                VALUES ($1, $2, $3)
                                 RETURNING id, teacherID, name, classTime`, [id, name, classTime]);
     
     
