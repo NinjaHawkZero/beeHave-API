@@ -16,14 +16,14 @@ class Students {
 
 
 //Create student
-static async createStudent(id, name, age, behaveScore = 0) {
+static async createStudent(id, name ) {
 
     let result = await db.query(`
                                 INSERT INTO students
-                                (classID, name, age, behaveScore)
+                                (classID, name)
                                 VALUES ($1, $2, $3, $4)
-                                RETURNING id, classID, name, age, behaveScore
-                                `, [id, name, age, behaveScore]);
+                                RETURNING id, classID, name
+                                `, [id, name]);
 
     let student = result.rows[0];
 
@@ -58,10 +58,7 @@ static async getStudent(id) {
     let result = await db.query(`
                                 SELECT classID,
                                 id,
-                                name,
-                                age,
-                                behaveScore,
-                                img_url
+                                name
                                 FROM students
                                 WHERE id = $1`, [id]);
 
@@ -84,7 +81,7 @@ static async getStudent(id) {
         const sqlQuery = `UPDATE students
                           SET ${setCols}
                           WHERE id = ${idIndex}
-                          RETURNING id, classID, name, age, behaveScore, img_url`;
+                          RETURNING id, classID, name`;
 
         const result = await db.query(sqlQuery, [...values, id]);
 

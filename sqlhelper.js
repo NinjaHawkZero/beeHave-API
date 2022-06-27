@@ -21,6 +21,6 @@ function sqlForUpdate(dataToUpdate, jsToSql) {
 
 
 
-console.log(sqlForUpdate({"id":6, "name":"Marc"} ))
+
 
 module.exports = {sqlForUpdate}

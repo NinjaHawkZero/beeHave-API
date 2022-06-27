@@ -15,14 +15,14 @@ class Classes {
 
 
     //Create a class, given a teacher id and name
-   static async createClass(id, name) {
+   static async createClass(id, name, classTime) {
 
     let result = await db.query(
         `
                                 INSERT INTO classes
-                                (teacherID, name)
+                                (teacherID, name, classTime)
                                 VALUES ($1, $2)
-                                RETURNING id, teacherID, name, img_url`, [id, name]);
+                                RETURNING id, teacherID, name, classTime`, [id, name, classTime]);
     
     
     const classResult =  result.rows[0];
@@ -62,7 +62,7 @@ class Classes {
         const sqlQuery = `UPDATE classes
                           SET ${setCols}
                           WHERE id = ${classID}
-                          RETURNING id, teacherID, name, img_url `;
+                          RETURNING id, teacherID, name, classTime `;
 
         const result = await db.query(sqlQuery, [...values, id]);
 

@@ -19,10 +19,10 @@ const studentsRouter = new express.Router();
 studentsRouter.post("/:id/createStudent",  async function(req, res, next) {
     try {
         //Send class object data, specifically ID of the class
-         let {name, age} = req.body;
+         let {name} = req.body;
          let id = req.body.id;
 
-         let student = await Students.createStudent(id, name, age);
+         let student = await Students.createStudent(id, name);
          let returnArr = [student]
 
          return res.status(201).json({returnArr})
