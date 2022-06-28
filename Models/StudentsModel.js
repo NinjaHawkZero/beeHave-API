@@ -21,7 +21,7 @@ static async createStudent(id, name ) {
     let result = await db.query(`
                                 INSERT INTO students
                                 (classID, name)
-                                VALUES ($1, $2, $3, $4)
+                                VALUES ($1, $2)
                                 RETURNING id, classID, name
                                 `, [id, name]);
 
