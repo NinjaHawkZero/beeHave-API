@@ -80,7 +80,7 @@ classesRouter.patch("/:id/updateClass", async function(req, res, next) {
 
 //Route to remove a class
 
-classesRouter.delete("/:id/deleteClass", ensureCorrectUser, async function(req, res, next) {
+classesRouter.delete("/:id/deleteClass",  async function(req, res, next) {
     try{
         let {id} = req.body;
         await Classes.removeClass(id);
