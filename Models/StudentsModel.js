@@ -126,9 +126,11 @@ static async getStudent(id) {
 
     static async removeStudent(id) {
 
+
+        
         let result = await db.query(`DELETE
                                     FROM students
-                                    WHERE id=$1
+                                    WHERE id = $1
                                     RETURNING name`, [id]);
         
         let studentName = result.rows[0]

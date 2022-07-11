@@ -101,8 +101,12 @@ studentsRouter.patch("/:id/updateScore",  async function(req, res, next) {
 studentsRouter.delete("/:id/removeStudent",  async function(req, res, next) {
     try{
         let id = req.body;
+        let newID = id.id
 
-        let deletedStudent = await Students.removeStudent(id);
+        console.log(newID)
+        
+
+        let deletedStudent = await Students.removeStudent(newID);
 
         return res.status(201).json({deletedStudent})
 
