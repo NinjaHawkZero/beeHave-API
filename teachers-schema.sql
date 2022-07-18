@@ -32,6 +32,7 @@ CREATE TABLE behaviors (
     studentID INTEGER
     REFERENCES students ON DELETE CASCADE,
     assigned TEXT,
+    chartDate TEXT,
     name TEXT NOT NULL,
     note TEXT,
     score INTEGER

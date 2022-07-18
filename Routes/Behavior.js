@@ -8,6 +8,11 @@ const axios = require("axios");
 
 
 
+
+
+
+
+
 const { Behaviors } = require("../Models/BehaviorModel");
 
 
@@ -18,9 +23,11 @@ const behaviorRouter = new express.Router();
 
 behaviorRouter.post("/:id/createBehavior",  async function(req, res, next) {
     try{
-        let {assigned, name, note, score} = req.body;
+        let {assigned, name, note, score, chartDate} = req.body;
+        chartDate = assignCurrentDate()
+        console.log(chartDate)
         let studentID = req.body.studentID
-        let assignedDate = await Behaviors.createBehavior(studentID, assigned, name, note, score);
+        let assignedDate = await Behaviors.createBehavior(studentID, assigned, name, note, score, chartDate);
         let returnArr = [assignedDate]
 
         return res.status(201).json({returnArr})
@@ -92,3 +99,22 @@ behaviorRouter.delete("/:id/deleteBehavior",  async function(req, res, next) {
 
 
 module.exports = behaviorRouter;
+
+
+
+
+//Returns string of current date, properly formatted
+function assignCurrentDate() {
+    const now = new Date();
+
+    let currentDay =  new Date(now.getFullYear(), now.getMonth(), now.getDate()).toUTCString();
+
+    let split = currentDay.split(" ");
+    split.pop();
+    split.pop();
+
+    let joinedDate = split.join(" ")
+    console.log(joinedDate)
+
+    return joinedDate
+}
