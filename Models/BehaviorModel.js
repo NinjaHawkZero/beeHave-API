@@ -436,3 +436,30 @@ console.log(getLastWeeksDates())
 
 
 module.exports = {Behaviors}
+
+
+function plusMinus(arr) {
+
+    let zeros = 0
+    let positive = 0
+    let negative = 0
+
+    for(let i=0; i<arr.length - 1; i++) {
+        //Calculate each type
+       
+        if(arr[i] == 0) {
+            zero++
+        } else if (arr[i] < 0) {
+            negative++
+        } else {positive++}
+    }
+
+    let zeroRation = zeros / arr.length;
+    let positiveRotation = positive / arr.length;
+    let negativeRotation = negative / arr.length;
+
+    return 
+    {zeroRotation, positiveRotation, negativeRotation}
+
+
+}
